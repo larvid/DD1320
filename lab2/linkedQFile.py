@@ -19,6 +19,10 @@ class LinkedQ:
             self.last.next = tmp
         self.last = tmp
 
+    def mega_enqueue(self, list):
+        for i in range(len(list)):
+            self.enqueue(list[i])
+
     def dequeue(self):
         if self.first == None:
             return None
@@ -36,11 +40,12 @@ class LinkedQ:
     def isEmpty(self):
         return self.first == None
     
-    def __str__(self):
+    def show(self):
+        tmp_list = []
         tmp = self.first
         while True:
-            print(tmp.val)
+            tmp_list.append(tmp.val)
             tmp = tmp.next
             if tmp == self.last:
-                break
-
+                tmp_list.append(tmp.val)
+                return tmp_list

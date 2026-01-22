@@ -3,7 +3,7 @@ from linkedQFile import LinkedQ
 if __name__ == "__main__":
 
     # Rätta svaret: 7, 1, 12, 2, 8, 3, 11, 4, 9, 5, 13, 6, 10
-    input_list = input("Skriv in dina objekt med mellanslag som separator:\n").split()
+    input_list = input().split()
 
     Q = LinkedQ()
 

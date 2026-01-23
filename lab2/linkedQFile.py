@@ -13,7 +13,7 @@ class LinkedQ:
     
     def enqueue(self, x):
         tmp = Node(x)
-        if self.first == None:
+        if self.first is None:
             self.first = tmp
         else:
             self.last.next = tmp
@@ -24,10 +24,10 @@ class LinkedQ:
             self.enqueue(list[i])
 
     def dequeue(self):
-        if self.first == None:
+        if self.first is None:
             return None
 
-        if self.first == self.last:
+        if self.first is self.last:
             tmp = self.first.val
             self.first = None
             self.last = None
@@ -38,9 +38,11 @@ class LinkedQ:
             return tmp
 
     def isEmpty(self):
-        return self.first == None
+        return self.first is None
     
     def show(self):
+        if self.isEmpty():
+            return None
         tmp_list = []
         tmp = self.first
         while True:

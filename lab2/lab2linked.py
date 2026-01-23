@@ -23,5 +23,6 @@ if __name__ == "__main__":
             tmpans.enqueue(Q.dequeue())
             state = 0
     
-    my_list = tmpans.show()
-    print(" ".join(my_list))
+    list = tmpans.show()
+    if not list == None:
+        print(" ".join(list))

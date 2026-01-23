@@ -14,7 +14,7 @@ class ArrayQ:
         self._Q.append(x)
 
     def dequeue(self, i = 0):
-        return self._Q.pop(0)
+        return self._Q.pop(i)
     
     def isEmpty(self):
         return len(self._Q) == 0

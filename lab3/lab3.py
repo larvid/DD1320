@@ -1,0 +1,75 @@
+class Node:
+    def __init__(self, value, left = None, right = None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+    def __repr__(self):
+        return str(self.value)
+
+class Bintree:
+    def __init__(self):
+        self.root = None
+    
+    def write(self, p = "root"):
+        if p == "root":
+            p = self.root
+        if p is not None:
+            self.write(p.left)
+            print(p)
+            self.write(p.right)
+    
+    def preorder(self, p = "root", depth = 0):
+        if p == "root":
+            p = self.root
+        if p is not None:
+            print("  " * depth + str(p.value))
+            self.preorder(p.left, depth + 1)
+            self.preorder(p.right, depth + 1)
+
+    def postorder(self, p = "root"):
+        if p == "root":
+            p = self.root
+        if p is not None:
+            self.postorder(p.left)
+            self.postorder(p.right)
+            print(p)
+
+    def inorderlist(self, p = "root"):
+        if p == "root":
+            p = self.root
+        if p is None:
+            return []
+        return self.inorderlist(p.left) + [p.value] + self.inorderlist(p.right)
+
+    def __contains__(self, val, p = "root"):
+        if p == "root":
+            p = self.root
+        if p is None:
+            return False
+        if p.value == val:
+            return True
+        
+        if p.value > val:
+            return self.__contains__(val, p.left)
+        if p.value < val:
+            return self.__contains__(val, p.right)
+    
+    def put(self, val):
+        my_list = self.inorderlist() + [val]
+        my_list.sort()
+        self.mk_tree(my_list)
+        
+    def mk_tree(self, my_list, depth = 0):
+        if not my_list:
+            return None
+        length = len(my_list)
+        middle = (length // 2)
+        tmp = Node(my_list[middle])
+        if depth == 0:
+            self.root = tmp
+        if len(my_list) == 1:
+            return tmp
+        tmp.left = self.mk_tree(my_list[:middle], depth + 1)
+        tmp.right = self.mk_tree(my_list[middle+1:], depth + 1)
+        return tmp

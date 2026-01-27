@@ -57,8 +57,33 @@ class Bintree:
     def level_index(self, p = "root", depth = 0):
         if p == "root":
             p = self.root
+        if p is None:
+            return None
         if p is not None:
-            return [(depth,p) + self.level_index(p.left, depth + 1) + self.level_index(p.right, depth + 1)]
+            output = [(depth, p.value)]
+            tmp1 = self.level_index(p.left, depth + 1)
+            if tmp1 is not None:
+                output = output + tmp1
+            tmp2 = self.level_index(p.right, depth + 1)
+            if tmp2 is not None:
+                output = output + tmp2
+            return output
+        
+    def tree_list(self):
+        print("\n")
+        tuplarna = self.level_index()
+        max_depth = self._depth_() + 1
+        levels = [[] for _ in range(max_depth)]
+            
+        for depth, val in tuplarna:
+            levels[depth].append(val)
+
+        i = 0
+        for level in levels:
+            print("  " * (max_depth - i),level)
+            i += 1
+            
+            
 
     def inorderlist(self, p = "root"):
         if p == "root":

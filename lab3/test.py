@@ -3,7 +3,7 @@ import random
 
 tree = Bintree()
 
-values = [random.randint(0, 40) for _ in range(61)]
+values = [random.randint(0, 40) for _ in range(29)]
 #values.sort()
 tree.makeTree(values)
 
@@ -17,3 +17,5 @@ tree.preorder()
 
 print(len(tree))
 print(tree._depth_())
+print(tree.level_index())
+tree.tree_list()

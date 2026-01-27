@@ -53,6 +53,12 @@ class Bintree:
             self.postorder(p.left)
             self.postorder(p.right)
             print(p)
+        
+    def level_index(self, p = "root", depth = 0):
+        if p == "root":
+            p = self.root
+        if p is not None:
+            return [(depth,p) + self.level_index(p.left, depth + 1) + self.level_index(p.right, depth + 1)]
 
     def inorderlist(self, p = "root"):
         if p == "root":

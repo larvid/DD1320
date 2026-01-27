@@ -1,4 +1,4 @@
-from lab3 import *
+from BintreeFile import *
 import random
 
 tree = Bintree()
@@ -7,7 +7,7 @@ values = [random.randint(0, 40) for _ in range(20)]
 #values.sort()
 
 print(values)
-tree.mk_tree(values)
+tree.makeTree(values)
 
 tree.write()
 

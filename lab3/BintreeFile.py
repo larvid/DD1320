@@ -4,12 +4,18 @@ class Node:
         self.left = left
         self.right = right
 
-    def __repr__(self):
+    def __str__(self):
         return str(self.value)
 
 class Bintree:
     def __init__(self):
         self.root = None
+
+    def __str__(self):
+        pass
+
+    def __len__(self):
+        pass
     
     def write(self, p = "root"):
         if p == "root":
@@ -58,9 +64,9 @@ class Bintree:
     def put(self, val):
         my_list = self.inorderlist() + [val]
         my_list.sort()
-        self.mk_tree(my_list)
+        self.makeTree(my_list)
         
-    def mk_tree(self, my_list, depth = 0):
+    def makeTree(self, my_list, depth = 0):
         if not my_list:
             return None
         length = len(my_list)
@@ -70,6 +76,6 @@ class Bintree:
             self.root = tmp
         if len(my_list) == 1:
             return tmp
-        tmp.left = self.mk_tree(my_list[:middle], depth + 1)
-        tmp.right = self.mk_tree(my_list[middle+1:], depth + 1)
+        tmp.left = self.makeTree(my_list[:middle], depth + 1)
+        tmp.right = self.makeTree(my_list[middle+1:], depth + 1)
         return tmp

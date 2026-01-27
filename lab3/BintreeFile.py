@@ -14,8 +14,21 @@ class Bintree:
     def __str__(self):
         pass
 
-    def __len__(self):
-        pass
+    def __len__(self, p = "root"):
+        if p == "root":
+            p = self.root
+        if p is None:
+            return 0
+        return 1 + self.__len__(p.left) + self.__len__(p.right)
+    
+    def _depth_(self):
+        return self._depth_helper(self.root) - 1
+        
+    def _depth_helper(self,p):
+        if p is None:
+            return 0
+        return 1 + max(self._depth_helper(p.left), self._depth_helper(p.right))
+        
     
     def write(self, p = "root"):
         if p == "root":

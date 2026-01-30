@@ -21,8 +21,10 @@ class Bintree:
             return 0
         return 1 + self.__len__(p.left) + self.__len__(p.right)
     
-    def _depth_(self):
-        return self._depth_helper(self.root) - 1
+    def _depth_(self, p = None):
+        if p is None:
+            p = self.root
+        return self._depth_helper(p) - 1
         
     def _depth_helper(self,p):
         if p is None:
@@ -82,8 +84,6 @@ class Bintree:
         for level in levels:
             print("  " * (max_depth - i),level)
             i += 1
-            
-            
 
     def inorderlist(self, p = "root"):
         if p == "root":
@@ -105,10 +105,22 @@ class Bintree:
         if p.value < val:
             return self.__contains__(val, p.right)
     
-    def put(self, val):
-        my_list = self.inorderlist() + [val]
-        my_list.sort()
-        self.makeTree(my_list)
+    def put(self, val, p = "root"):
+        if self.root is None:
+            self.root = Node(val)
+            return
+        if p == "root":
+            p = self.root
+        if val <= p.value:
+            if p.left is None:
+                p.left = Node(val)
+                return
+            self.put(val, p.left)
+        else:
+            if p.right is None:
+                p.right = Node(val)
+                return
+            self.put(val, p.right)
         
     def makeTree(self, my_list, depth = 0):
         if not my_list:
@@ -123,3 +135,7 @@ class Bintree:
         tmp.left = self.makeTree(my_list[:middle], depth + 1)
         tmp.right = self.makeTree(my_list[middle+1:], depth + 1)
         return tmp
+    
+    def makeBalanced(self):
+        my_list = self.inorderlist()
+        self.makeTree(my_list)

@@ -11,16 +11,13 @@ class Bintree:
     def __init__(self):
         self.root = None
 
-    def __str__(self):
-        pass
-
     def __len__(self, p = "root"):
         if p == "root":
             p = self.root
         if p is None:
             return 0
         return 1 + self.__len__(p.left) + self.__len__(p.right)
-    
+    """
     def _depth_(self, p = None):
         if p is None:
             p = self.root
@@ -30,7 +27,7 @@ class Bintree:
         if p is None:
             return 0
         return 1 + max(self._depth_helper(p.left), self._depth_helper(p.right))
-        
+    """    
     
     def write(self, p = "root"):
         if p == "root":
@@ -39,7 +36,7 @@ class Bintree:
             self.write(p.left)
             print(p)
             self.write(p.right)
-    
+    """
     def preorder(self, p = "root", depth = 0):
         if p == "root":
             p = self.root
@@ -55,7 +52,7 @@ class Bintree:
             self.postorder(p.left)
             self.postorder(p.right)
             print(p)
-        
+
     def level_index(self, p = "root", depth = 0):
         if p == "root":
             p = self.root
@@ -70,7 +67,7 @@ class Bintree:
             if tmp2 is not None:
                 output = output + tmp2
             return output
-        
+
     def tree_list(self):
         print("\n")
         tuplarna = self.level_index()
@@ -84,14 +81,14 @@ class Bintree:
         for level in levels:
             print("  " * (max_depth - i),level)
             i += 1
-
+       
     def inorderlist(self, p = "root"):
         if p == "root":
             p = self.root
         if p is None:
             return []
         return self.inorderlist(p.left) + [p.value] + self.inorderlist(p.right)
-
+    """
     def __contains__(self, val, p = "root"):
         if p == "root":
             p = self.root

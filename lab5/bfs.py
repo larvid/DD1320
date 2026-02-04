@@ -45,8 +45,8 @@ with open("word3.txt", "r", encoding="utf-8") as svenskfil:
 
     q = LinkedQ()
 
-    startord = "par"
-    söktord = "äng"
+    startord = input()
+    söktord = input()
     found = False
 
     start = ParentNode(startord)

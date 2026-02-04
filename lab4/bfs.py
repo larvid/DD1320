@@ -31,8 +31,8 @@ with open("word3.txt", "r", encoding="utf-8") as svenskfil:
 
     q = LinkedQ()
 
-    startord = "mun"
-    söktord = "bok"
+    startord = input()
+    söktord = input()
     found = False
 
     q.enqueue(startord)
@@ -44,10 +44,11 @@ with open("word3.txt", "r", encoding="utf-8") as svenskfil:
             break
         makechildren(nod, q, svenska, gamla)
 
+    path = []
     if found == False:
         ordet = söktord
         while True:
-            print(parent[ordet])
+            path.append(parent[ordet])
             ordet = parent[ordet]
             if ordet == startord:
                 break

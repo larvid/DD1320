@@ -40,15 +40,17 @@ with open("word3.txt", "r", encoding="utf-8") as svenskfil:
     while not q.isEmpty():
         nod = q.dequeue()
         if nod == söktord:
-            print(söktord)
+            found = True
+            print("Path found")
             break
         makechildren(nod, q, svenska, gamla)
 
-    path = []
-    if found == False:
+    if found == True:
         ordet = söktord
         while True:
-            path.append(parent[ordet])
+            print(parent[ordet])
             ordet = parent[ordet]
             if ordet == startord:
                 break
+    else:
+        print("No path found")

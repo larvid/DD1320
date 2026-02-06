@@ -47,6 +47,7 @@ with open("word3.txt", "r", encoding="utf-8") as svenskfil:
 
     startord = input()
     söktord = input()
+    print("\n")
     found = False
 
     start = ParentNode(startord)

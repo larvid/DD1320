@@ -30,7 +30,11 @@ def binsok(lista, key):
     return None  # Om vi kommer hit finns inte 'key' i listan
 
 
-def readfile(filename):
+def hashsok(dictionary, key):
+    return dictionary.get(key)
+
+
+def readfile_list(filename):
     lista = []
     with open(f"{filename}", "r", encoding="utf-8") as songfil:
         for rad in songfil:
@@ -40,3 +44,27 @@ def readfile(filename):
             )
             lista.append(song)
         return lista
+
+
+def timsort(songlist):
+    sorted_list = sorted(songlist, key=lambda s: s.title.lower())
+    return sorted_list
+
+
+def create_dict(songlist):
+    dictionary = {}
+
+    for song in songlist:
+        dictionary[song.trackid] = song
+    return dictionary
+
+
+def urvalssortera(data):
+    n = len(data)
+    print("\nAntalet element =", n)
+    for i in range(n - 1):
+        minst = i
+        for j in range(i + 1, n):
+            if data[j].title.strip().lower() < data[minst].title.strip().lower():
+                minst = j
+        data[minst], data[i] = data[i], data[minst]

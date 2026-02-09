@@ -4,9 +4,13 @@ from SearchFile import *
 import timeit
 
 filename = "unique_tracks.txt"
-song_list = readfile(filename)
+song_list = readfile_list(filename)
 halvLista = song_list[0:500000]
 kvartsLista = song_list[0:250000]
+song_dict = create_dict(song_list)
+song_dict_half = create_dict(halvLista)
+song_dict_quarter = create_dict(kvartsLista)
+# halvDict = song_dict[0:500000]
 
 
 def linj_sok(lista, namn):
@@ -26,8 +30,18 @@ def bin_sok(lista, namn):
     testsong = sista.title
     lista.sort()
     print(namn)
-    linjtid = timeit.timeit(stmt=lambda: binsok(lista, testsong), number=10000)
-    print("Linjärsökningen tog", round(linjtid, 4), "sekunder")
+    bintid = timeit.timeit(stmt=lambda: binsok(lista, testsong), number=10000)
+    print("Binärsökningen tog", round(bintid, 4), "sekunder")
+
+
+def hash_sok(dictionary, namn):
+    n = len(dictionary)
+    print("\nAntal element =", n)
+
+    testsong = next(iter(dictionary.keys()))
+    print(namn)
+    hashtid = timeit.timeit(stmt=lambda: hashsok(dictionary, testsong), number=10000)
+    print("hashsökningen tog", round(hashtid, 4), "sekunder")
 
 
 linj_sok(song_list, "Hela listan")
@@ -38,5 +52,6 @@ bin_sok(song_list, "Hela listan")
 bin_sok(halvLista, "Halva listan")
 bin_sok(kvartsLista, "Kvarts lista")
 
-# for song in song_list[:100]:
-# print(song)
+hash_sok(song_dict, "Hela listan")
+hash_sok(song_dict_half, "Hela listan")
+hash_sok(song_dict_quarter, "Hela listan")

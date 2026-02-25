@@ -55,3 +55,7 @@ bin_sok(kvartsLista, "Kvarts lista")
 hash_sok(song_dict, "Hela listan")
 hash_sok(song_dict_half, "Hela listan")
 hash_sok(song_dict_quarter, "Hela listan")
+
+
+# Tidssökningarna stämmer också relativt bra, linjärsökningen är linjär O(n), då när man halverar n halverar tiden. För binärsökningen O(log(n)) kan vi se att det verkar vara overhead-kostnaderna som spelar störst roll, men där tiden minskar marginellt med minskning av n
+# För hashsökning tar det lika lång tid för samtliga sökningar och stämmer överens med teorin O(1),

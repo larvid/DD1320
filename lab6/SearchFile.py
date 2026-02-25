@@ -3,7 +3,7 @@ from ClassFile import *
 
 def linsok(lista, key):
     for song in lista:
-        if song.artist == key:
+        if song.title == key:
             return song
     return None
 
@@ -13,21 +13,18 @@ def binsok(lista, key):
     high = len(lista) - 1
 
     while low <= high:
-        # Hitta mitten utan att skapa en ny lista
         mid = (low + high) // 2
         current_title = lista[mid].title
 
         if current_title == key:
-            return lista[mid]  # Hittad!
+            return lista[mid]
 
         elif current_title < key:
-            # Sök i höger halva genom att flytta den nedre gränsen
             low = mid + 1
         else:
-            # Sök i vänster halva genom att flytta den övre gränsen
             high = mid - 1
 
-    return None  # Om vi kommer hit finns inte 'key' i listan
+    return None
 
 
 def hashsok(dictionary, key):
@@ -47,6 +44,8 @@ def readfile_list(filename):
 
 
 def timsort(songlist):
+    n = len(songlist)
+    print("\nAntalet element =", n)
     sorted_list = sorted(songlist, key=lambda s: s.title.lower())
     return sorted_list
 

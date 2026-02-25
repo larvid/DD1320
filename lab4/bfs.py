@@ -47,6 +47,7 @@ with open("word3.txt", "r", encoding="utf-8") as svenskfil:
 
     if found == True:
         ordet = söktord
+        print(ordet)
         while True:
             print(parent[ordet])
             ordet = parent[ordet]

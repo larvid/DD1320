@@ -1,9 +1,9 @@
 from hashtable import Hashtable
 
-tabellen = Hashtable(101)
+tabellen = Hashtable(100001)
 
 tabellen["tranan"] = "bäret"
 
 print(tabellen["tranan"])
 
-print(tabellen.hashfunction("tranbär"))
+print(tabellen.hashfunction("trånb"))

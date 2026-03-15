@@ -5,10 +5,6 @@ class Syntaxfel(Exception):
     pass
 
 
-def __init__(self, name):
-    self.name = name
-
-
 def readFormel(q):
     readMol(q)
     if q.peek() is not None:
@@ -85,13 +81,3 @@ def readNum(q, num=""):
 
     num += q.dequeue()
     return readNum(q, num)
-
-
-def kollaMolekylen(formel):
-    q = LinkedQ()
-    q.mega_enqueue(formel)
-    try:
-        readMolekyl(q)
-        return "Formeln är syntaktiskt korrekt"
-    except Syntaxfel as e:
-        return str(e)

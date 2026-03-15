@@ -1,4 +1,5 @@
 from linkedQFile import *
+from periodic_elements import *
 
 
 class Syntaxfel(Exception):

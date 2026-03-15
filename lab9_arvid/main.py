@@ -10,7 +10,7 @@ def searches():
         q = LinkedQ()
         q.mega_enqueue(findme)
         try:
-            readMol(q)
+            readFormel(q)
             print("Formeln är syntaktiskt korrekt")
         except Syntaxfel as e:
             print(e)

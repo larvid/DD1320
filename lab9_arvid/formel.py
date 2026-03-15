@@ -9,7 +9,10 @@ class Syntaxfel(Exception):
 def readFormel(q):
     readMol(q)
     if q.peek() is not None:
-        raise Syntaxfel("skräp")
+        if q.peek() == ")":
+            raise Syntaxfel("Saknad vänsterparentes vid radslutet")
+        else:
+            raise Syntaxfel("Något gick snett :/")
 
 
 def readMol(q):
@@ -29,6 +32,8 @@ def readGroup(q):
         q.dequeue()
         if q.peek() is None:
             raise Syntaxfel("Saknad siffra vid radslutet" + q.get_rest())
+        if not q.peek().isdigit():
+            raise Syntaxfel("Saknad siffra vid radslutet" + q.get_rest())
         readNum(q)
     else:
         readAtom(q)
@@ -36,15 +41,20 @@ def readGroup(q):
 
 
 def readAtom(q):
-    letter = q.peek()
-    if readUpperLetter(letter):
+    val1 = q.peek()
+    if readUpperLetter(val1):
         q.dequeue()
     else:
         raise Syntaxfel("Saknad stor bokstav vid radslutet " + q.get_rest())
 
-    val = q.peek()
-    if readLowerLetter(val):
+    val2 = q.peek()
+    if readLowerLetter(val2):
         q.dequeue()
+    else:
+        val2 = ""
+    atom = val1 + val2
+    if not atom in periodic_elements:
+        raise Syntaxfel("Atom finns inte vid radslutet " + q.get_rest())
 
 
 def readUpperLetter(letter):
@@ -68,13 +78,16 @@ def readLowerLetter(letter):
 
 
 def readNum(q, num=""):
-    if not q.peek().isdigit():
+    digit = q.peek()
+    if digit is None:
+        return None
+    if not digit.isdigit():
         return None
 
     while not q.isEmpty() and q.peek().isdigit():
         num += q.dequeue()
 
     if num[0] == "0":
-        raise Syntaxfel("För litet tal vid radslutet " + num[1:])
+        raise Syntaxfel("För litet tal vid radslutet " + num[1:] + q.get_rest())
     if int(num) < 2:
-        raise Syntaxfel("För litet tal vid radslutet")
+        raise Syntaxfel("För litet tal vid radslutet " + q.get_rest())

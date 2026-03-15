@@ -10,10 +10,11 @@ def searches():
         q = LinkedQ()
         q.mega_enqueue(findme)
         try:
-            readMolekyl(q, findme)
+            readMolekyl(q)
             print("Formeln är syntaktiskt korrekt")
         except Syntaxfel as e:
             print(e)
 
 
-searches()
+if __name__ == "__main__":
+    searches()

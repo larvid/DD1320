@@ -11,6 +11,13 @@ class LinkedQ:
         self.first = first
         self.last = last
 
+    def get_rest(self):
+        string = ""
+        while self.peek() is not None:
+            val = self.dequeue()
+            string += val
+        return string
+
     def peek(self):
         if self.first is None:
             return None

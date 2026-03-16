@@ -83,11 +83,9 @@ def readNum(q, num=""):
         return None
     if not digit.isdigit():
         return None
+    if int(digit) < 2:
+        q.dequeue()
+        raise Syntaxfel("För litet tal vid radslutet " + q.get_rest())
 
     while not q.isEmpty() and q.peek().isdigit():
         num += q.dequeue()
-
-    if num[0] == "0":
-        raise Syntaxfel("För litet tal vid radslutet " + num[1:] + q.get_rest())
-    if int(num) < 2:
-        raise Syntaxfel("För litet tal vid radslutet " + q.get_rest())

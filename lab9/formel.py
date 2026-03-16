@@ -10,7 +10,7 @@ def readFormel(q):
     readMol(q)
     if q.peek() is not None:
         if q.peek() == ")":
-            raise Syntaxfel("Saknad vänsterparentes vid radslutet")
+            raise Syntaxfel("Felaktig gruppstart vid radslutet " + q.get_rest())
         else:
             raise Syntaxfel("Något gick snett :/")
 
@@ -31,11 +31,13 @@ def readGroup(q):
             raise Syntaxfel("Saknad högerparentes vid radslutet")
         q.dequeue()
         if q.peek() is None:
-            raise Syntaxfel("Saknad siffra vid radslutet" + q.get_rest())
+            raise Syntaxfel("Saknad siffra vid radslutet " + q.get_rest())
         if not q.peek().isdigit():
-            raise Syntaxfel("Saknad siffra vid radslutet" + q.get_rest())
+            raise Syntaxfel("Saknad siffra vid radslutet " + q.get_rest())
         readNum(q)
     else:
+        if not readUpperLetter(val) and not readLowerLetter(val):
+            raise Syntaxfel("Felaktig gruppstart vid radslutet " + q.get_rest())
         readAtom(q)
         readNum(q)
 
@@ -54,7 +56,7 @@ def readAtom(q):
         val2 = ""
     atom = val1 + val2
     if not atom in periodic_elements:
-        raise Syntaxfel("Atom finns inte vid radslutet " + q.get_rest())
+        raise Syntaxfel("Okänd atom vid radslutet " + q.get_rest())
 
 
 def readUpperLetter(letter):
@@ -91,5 +93,4 @@ def readNum(q, num=""):
         num += q.dequeue()
 
     if int(num) < 2:
-        q.dequeue()
         raise Syntaxfel("För litet tal vid radslutet " + q.get_rest())

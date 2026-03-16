@@ -17,7 +17,7 @@ def readMolekyl(q):
     elif val.isdigit():
         readNum(q)
     else:
-        raise Syntaxfel("För många stora/små bokstäver vid radslutet " + molekyl)
+        raise Syntaxfel("För många stora/små bokstäver vid radslutet " + q.get_rest())
 
 
 def readAtom(q):

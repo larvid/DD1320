@@ -90,6 +90,6 @@ def readNum(q, num=""):
     while not q.isEmpty() and q.peek().isdigit():
         num += q.dequeue()
 
-    if int(digit) < 2:
+    if int(num) < 2:
         q.dequeue()
         raise Syntaxfel("För litet tal vid radslutet " + q.get_rest())

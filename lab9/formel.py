@@ -94,3 +94,13 @@ def readNum(q, num=""):
 
     if int(num) < 2:
         raise Syntaxfel("För litet tal vid radslutet " + q.get_rest())
+
+
+def kollaFormeln(formel):
+    q = LinkedQ()
+    q.mega_enqueue(formel)
+    try:
+        readFormel(q)
+        return "Formeln är syntaktiskt korrekt"
+    except Syntaxfel as e:
+        return str(e)

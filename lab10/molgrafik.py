@@ -20,7 +20,8 @@ def version():
 if version() == 3:
     from tkinter import *
 else:
-    from Tkinter import *
+    # from Tkinter import *
+    pass
 
 
 class Ruta:
